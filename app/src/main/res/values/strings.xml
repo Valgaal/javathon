@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">javathon</string>
+    <string name="not_found">Не найдено</string>
+    <string name="internet_error">Нет сети</string>
+    <string name="debt">должен</string>
+    <string name="send_money_button">Отправить деньги</string>
+    <string name="add_product_button">Добавить продукт</string>
+    <string name="hint_add_name">Добавьте навзание</string>
+    <string name="hint_add_count">Добавьте количество</string>
+
+</resources>

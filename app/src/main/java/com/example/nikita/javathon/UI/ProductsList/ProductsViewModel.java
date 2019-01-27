@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 
 import com.example.nikita.javathon.R;
 import com.example.nikita.javathon.Repository;
+import com.example.nikita.javathon.UI.PartyList.PartyListViewState;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -54,20 +55,36 @@ public class ProductsViewModel extends AndroidViewModel {
     }
 
     void sendMoney(){
-        mRepository.sendMoney();
+        disposable.add(mRepository.sendMoney()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        response -> {
+                            stateLiveData.setValue(ListViewState.sent(getApplication().getResources().getString(R.string.success)));
+                        },
+                        throwable -> {
+                            if (throwable instanceof UnknownHostException) {
+                                stateLiveData.setValue(ListViewState.error(getApplication().getResources().getString(R.string.internet_error)));
+                            } else {
+                                stateLiveData.setValue(ListViewState.error(throwable.getMessage()));
+                            }
+                        }
+                ));
     }
 
     void addProduct(ProductsModel productsModel){
-        ListViewState state = stateLiveData.getValue();
-        ArrayList<ProductsModel> productsModels = new ArrayList<>();
-        if(state != null){
-            productsModels = (ArrayList<ProductsModel>) state.data;
-            productsModels.add(productsModel);
-        }else{
-
-            productsModels.add(productsModel);
-        }
-        stateLiveData.setValue(ListViewState.success(productsModels));
-        mRepository.addProduct(productsModel);
+        disposable.add(mRepository.addProduct(productsModel)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        response -> {
+                            stateLiveData.setValue(ListViewState.added(productsModel));
+                        },
+                        throwable -> {
+                            if (throwable instanceof UnknownHostException) {
+                                stateLiveData.setValue(ListViewState.error(getApplication().getResources().getString(R.string.internet_error)));
+                            } else {
+                                stateLiveData.setValue(ListViewState.error(throwable.getMessage()));
+                            }
+                        }
+                ));
     }
 }

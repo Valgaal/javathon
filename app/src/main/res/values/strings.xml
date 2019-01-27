@@ -7,5 +7,6 @@
     <string name="add_product_button">Добавить продукт</string>
     <string name="hint_add_name">Добавьте навзание</string>
     <string name="hint_add_count">Добавьте количество</string>
+    <string name="success">Успешно</string>
 
 </resources>

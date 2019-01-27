@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".UI.ProductsList.ProductsActivity" />
         <activity android:name=".UI.ProductDetails.ProductDetailsActivity" />
+        <activity android:name=".UI.PartyList.PartyListActivity" />
     </application>
 
 </manifest>

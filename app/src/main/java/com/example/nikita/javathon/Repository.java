@@ -2,12 +2,14 @@ package com.example.nikita.javathon;
 
 import android.content.Context;
 
+import com.example.nikita.javathon.UI.PartyList.PartyListModel;
 import com.example.nikita.javathon.UI.ProductDetails.ProductDetailsListModel;
 import com.example.nikita.javathon.UI.ProductsList.ProductsModel;
 
 import java.util.List;
 
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
 
 
 public class Repository {
@@ -41,11 +43,19 @@ public class Repository {
 
     }
 
-    public void sendMoney(){
+    public Observable<List<PartyListModel>> getPartyList(int id){
 
     }
 
-    public void addProduct(ProductsModel productsModel){
+    public Observable<ResponseBody> sendMoney(){
+
+    }
+
+    public Observable<ResponseBody> addProduct(ProductsModel productsModel){
+
+    }
+
+    public Observable<ResponseBody> addParty(PartyListModel productsModel){
 
     }
 }

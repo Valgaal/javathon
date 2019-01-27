@@ -20,12 +20,14 @@ public class ProductsActivity  extends AppCompatActivity implements
 
     private ProductsViewModel mViewModel;
     private ProductsAdapter mAdapter;
+    private Button sendMoneyButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-        findViewById(R.id.sendMoneyButton).setOnClickListener(view -> mViewModel.sendMoney());
+        sendMoneyButton = findViewById(R.id.sendMoneyButton);
+        sendMoneyButton.setOnClickListener(view -> mViewModel.sendMoney());
         findViewById(R.id.addProductButton).setOnClickListener(view -> addProduct());
         mViewModel = ViewModelProviders.of(this).get(ProductsViewModel.class);
         setRv();
@@ -45,9 +47,16 @@ public class ProductsActivity  extends AppCompatActivity implements
             case SUCCESS:
                 mAdapter.setProducts(viewState.data);
                 break;
+
             case ERROR:
-                Toast.makeText(this, viewState.error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, viewState.message, Toast.LENGTH_SHORT).show();
                 break;
+            case ADDED:
+                mAdapter.setProduct(viewState.singleData);
+                break;
+            case SENT:
+                Toast.makeText(this, viewState.message, Toast.LENGTH_SHORT).show();
+                sendMoneyButton.setVisibility(View.GONE);
         }
     }
 

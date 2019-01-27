@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.nikita.javathon.R;
+import com.example.nikita.javathon.UI.PartyList.PartyListModel;
 
 import java.util.List;
 
@@ -40,6 +41,11 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
     void setProducts(List<ProductsModel> products){
         this.productsList = products;
+    }
+
+    void setProduct(ProductsModel productsModel){
+        productsList.add(productsModel);
+        notifyItemInserted(productsList.size());
     }
 
     @Override

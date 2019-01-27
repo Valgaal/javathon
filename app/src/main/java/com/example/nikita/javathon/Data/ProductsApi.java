@@ -30,8 +30,4 @@ public interface ProductsApi {
             @Header("Authorization") String token,
             @Body ProductsModel productsModel);
 
-    @POST("")
-    Observable<ResponseBody> sendMoney(
-            @Header("Authorization") String token,
-            @Body MoneyObject money);
 }

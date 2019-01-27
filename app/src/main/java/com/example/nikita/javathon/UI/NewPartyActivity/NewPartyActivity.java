@@ -26,7 +26,7 @@ public class NewPartyActivity  extends AppCompatActivity implements
     private NewPartyAdapter newPartyAdapter;
     private SearchAdapter searchAdapter;
 
-    private static final String result = "result";
+    public static final String RESULT = "result";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,8 +82,8 @@ public class NewPartyActivity  extends AppCompatActivity implements
         EditText nameEt = findViewById(R.id.editText);
         String name = nameEt.getText().toString();
         Intent returnIntent = new Intent();
+        //преобразовать в PartyList
         List<MemberModel> arrayList = newPartyAdapter.getMembers();
-        NewPartyModel newPartyModel = new NewPartyModel();
         returnIntent.putExtra(result, newPartyModel);
         setResult(Activity.RESULT_OK,returnIntent);
         finish();

@@ -5,9 +5,8 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
-import com.example.nikita.javathon.UI.ProductsList.ListViewState;
 import com.example.nikita.javathon.R;
-import com.example.nikita.javathon.Repository;
+import com.example.nikita.javathon.Data.Repository;
 
 import java.net.UnknownHostException;
 

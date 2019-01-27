@@ -6,12 +6,9 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
 import com.example.nikita.javathon.R;
-import com.example.nikita.javathon.Repository;
-import com.example.nikita.javathon.UI.PartyList.PartyListViewState;
+import com.example.nikita.javathon.Data.Repository;
 
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.nikita.javathon.R;
+import com.example.nikita.javathon.UI.NewPartyActivity.NewPartyActivity;
 import com.example.nikita.javathon.UI.ProductsList.ProductsActivity;
 
 
@@ -73,7 +74,7 @@ public class PartyListActivity extends AppCompatActivity implements PartyListAda
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 0){
-            PartyListModel partyListModel = data.getSerializableExtra();
+            PartyListModel partyListModel =(PartyListModel) data.getSerializableExtra(NewPartyActivity.RESULT);
             mViewModel.addParty(partyListModel);
         }
     }

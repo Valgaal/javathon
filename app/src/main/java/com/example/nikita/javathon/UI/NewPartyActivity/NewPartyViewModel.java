@@ -3,11 +3,10 @@ package com.example.nikita.javathon.UI.NewPartyActivity;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
-import android.renderscript.Short4;
 import android.support.annotation.NonNull;
 
 import com.example.nikita.javathon.R;
-import com.example.nikita.javathon.Repository;
+import com.example.nikita.javathon.Data.Repository;
 
 import java.net.UnknownHostException;
 

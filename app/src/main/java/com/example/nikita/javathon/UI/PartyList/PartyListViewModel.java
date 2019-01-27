@@ -52,6 +52,7 @@ public class PartyListViewModel extends AndroidViewModel {
     }
 
     void addParty(PartyListModel partyListModel){
+        stateLiveData.setValue(PartyListViewState.loading());
         disposable.add(mRepository.addParty(partyListModel)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

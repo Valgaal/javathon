@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.nikita.javathon.R;
@@ -22,6 +23,7 @@ public class PartyListActivity extends AppCompatActivity implements PartyListAda
 
     private PartyListAdapter mAdapter;
     private PartyListViewModel mViewModel;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class PartyListActivity extends AppCompatActivity implements PartyListAda
         setContentView(R.layout.party_list);
         int productId = getIntent().getExtras().getInt(USER_ID, 0);
         mViewModel = ViewModelProviders.of(this).get(PartyListViewModel.class);
+        progressBar = findViewById(R.id.progressBar);
         setRv();
         mViewModel.stateLiveData.observe(this, this::displayState);
         mViewModel.getParties(productId);
@@ -40,25 +43,28 @@ public class PartyListActivity extends AppCompatActivity implements PartyListAda
         rv.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new PartyListAdapter(this);
         rv.setAdapter(mAdapter);
-        findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(this, NewPartyActivity.class);
-                startActivityForResult(intent,0);
-            }
+        findViewById(R.id.fab).setOnClickListener(view -> {
+            Intent intent = new Intent(PartyListActivity.this, NewPartyActivity.class);
+            startActivityForResult(intent,0);
         });
     }
 
     private void displayState(PartyListViewState viewState) {
         switch (viewState.status) {
             case SUCCESS:
+                progressBar.setVisibility(View.GONE);
                 mAdapter.setParties(viewState.data);
                 break;
             case ERROR:
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(this, viewState.error, Toast.LENGTH_SHORT).show();
                 break;
             case ADDED:
+                progressBar.setVisibility(View.GONE);
                 mAdapter.setParty(viewState.singleData);
+                break;
+            case LOADING:
+                progressBar.setVisibility(View.VISIBLE);
                 break;
         }
     }

@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.nikita.javathon.UI.ProductsList.ListViewState;
@@ -17,6 +19,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     private ProductDetailsAdapter mAdapter;
     private ProductDetailsViewModel mViewModel;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,6 +28,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         int productId = getIntent().getExtras().getInt(ID, 0);
         mViewModel = ViewModelProviders.of(this).get(ProductDetailsViewModel.class);
         setRv();
+        progressBar = findViewById(R.id.progressBar);
         mViewModel.stateLiveData.observe(this, this::displayState);
         mViewModel.getProductDetails(productId);
 
@@ -40,10 +44,15 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private void displayState(ProductDetailsViewState viewState) {
         switch (viewState.status) {
             case SUCCESS:
+                progressBar.setVisibility(View.GONE);
                 mAdapter.setPrices(viewState.data);
                 break;
             case ERROR:
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(this, viewState.error, Toast.LENGTH_SHORT).show();
+                break;
+            case LOADING:
+                progressBar.setVisibility(View.VISIBLE);
                 break;
         }
     }

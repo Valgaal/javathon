@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.nikita.javathon.R;
@@ -25,6 +26,7 @@ public class NewPartyActivity  extends AppCompatActivity implements
     private NewPartyViewModel mViewModel;
     private NewPartyAdapter newPartyAdapter;
     private SearchAdapter searchAdapter;
+    private ProgressBar progressBar;
 
     public static final String RESULT = "result";
 
@@ -35,7 +37,8 @@ public class NewPartyActivity  extends AppCompatActivity implements
         mViewModel = ViewModelProviders.of(this).get(NewPartyViewModel.class);
         mViewModel.stateLiveData.observe(this, this::displayState);
         EditText searchEditText = findViewById(R.id.searchEditText);
-
+        progressBar = findViewById(R.id.progressBar);
+        setRv();
 
         findViewById(R.id.searchButton).setOnClickListener(view1 -> {
             Utils.hideKeyboardFrom(this, view1);
@@ -64,16 +67,23 @@ public class NewPartyActivity  extends AppCompatActivity implements
     private void displayState(NewPartyViewState newPartyViewState) {
         switch (newPartyViewState.status) {
             case SUCCESS:
+                progressBar.setVisibility(View.GONE);
                 searchAdapter.setMembers(newPartyViewState.data);
                 break;
             case ERROR:
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(this, newPartyViewState.error, Toast.LENGTH_SHORT).show();
                 break;
             case ADDED:
+                progressBar.setVisibility(View.GONE);
                 newPartyAdapter.setMember(newPartyViewState.singleData);
                 break;
             case REMOVED:
+                progressBar.setVisibility(View.GONE);
                 newPartyAdapter.removeMember(newPartyViewState.singleData);
+                break;
+            case LOADING:
+                progressBar.setVisibility(View.VISIBLE);
                 break;
         }
     }

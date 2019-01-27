@@ -52,6 +52,7 @@ public class NewPartyViewModel extends AndroidViewModel {
     }
 
     void addMember(MemberModel addMember){
+        stateLiveData.setValue(NewPartyViewState.loading());
         disposable.add(mRepository.addMember(addMember)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -69,6 +70,7 @@ public class NewPartyViewModel extends AndroidViewModel {
     }
 
     void removeMember(MemberModel member){
+        stateLiveData.setValue(NewPartyViewState.loading());
         disposable.add(mRepository.removeMember(member)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

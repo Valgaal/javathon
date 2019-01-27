@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.nikita.javathon.R;
@@ -21,6 +22,7 @@ public class ProductsActivity  extends AppCompatActivity implements
     private ProductsViewModel mViewModel;
     private ProductsAdapter mAdapter;
     private Button sendMoneyButton;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class ProductsActivity  extends AppCompatActivity implements
         setContentView(R.layout.activity_list);
         sendMoneyButton = findViewById(R.id.sendMoneyButton);
         sendMoneyButton.setOnClickListener(view -> mViewModel.sendMoney());
+        progressBar = findViewById(R.id.progressBar);
         findViewById(R.id.addProductButton).setOnClickListener(view -> addProduct());
         mViewModel = ViewModelProviders.of(this).get(ProductsViewModel.class);
         setRv();
@@ -45,18 +48,25 @@ public class ProductsActivity  extends AppCompatActivity implements
     private void displayState(ListViewState viewState) {
         switch (viewState.status) {
             case SUCCESS:
+                progressBar.setVisibility(View.GONE);
                 mAdapter.setProducts(viewState.data);
                 break;
-
             case ERROR:
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(this, viewState.message, Toast.LENGTH_SHORT).show();
                 break;
             case ADDED:
+                progressBar.setVisibility(View.GONE);
                 mAdapter.setProduct(viewState.singleData);
                 break;
             case SENT:
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(this, viewState.message, Toast.LENGTH_SHORT).show();
                 sendMoneyButton.setVisibility(View.GONE);
+                break;
+            case LOADING:
+                progressBar.setVisibility(View.VISIBLE);
+                break;
         }
     }
 

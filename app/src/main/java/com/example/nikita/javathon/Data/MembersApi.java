@@ -1,5 +1,7 @@
 package com.example.nikita.javathon.Data;
 
+import com.example.nikita.javathon.UI.Auth.SignInRequest;
+import com.example.nikita.javathon.UI.Auth.SignUpRequest;
 import com.example.nikita.javathon.UI.NewPartyActivity.MemberModel;
 import com.example.nikita.javathon.UI.PartyList.PartyListModel;
 import com.example.nikita.javathon.UI.ProductsList.ProductsModel;
@@ -8,6 +10,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
+import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -40,4 +43,10 @@ public interface MembersApi {
     Observable<List<MemberModel>> getMembers(
             @Header("Authorization") String token,
             @Query("search") String search);
+
+    @POST("create")
+    Call<String> postSignUpUser(@Body SignUpRequest profile);
+
+    @GET("")
+    Call<String> postSignInUser(@Body SignInRequest user);
 }

@@ -1,4 +1,4 @@
-package com.example.nikita.javathon;
+package com.example.nikita.javathon.utils;
 
 import android.app.Activity;
 import android.content.Context;

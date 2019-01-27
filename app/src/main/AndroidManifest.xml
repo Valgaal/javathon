@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.nikita.javathon">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -10,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".UI.Auth.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,6 +25,7 @@
         <activity android:name=".UI.ProductDetails.ProductDetailsActivity" />
         <activity android:name=".UI.PartyList.PartyListActivity" />
         <activity android:name=".UI.NewPartyActivity.NewPartyActivity" />
+        <activity android:name=".UI.Auth.RegisterActivity" />
     </application>
 
 </manifest>

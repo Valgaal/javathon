@@ -19,6 +19,7 @@
         <activity android:name=".UI.ProductsList.ProductsActivity" />
         <activity android:name=".UI.ProductDetails.ProductDetailsActivity" />
         <activity android:name=".UI.PartyList.PartyListActivity" />
+        <activity android:name=".UI.NewPartyActivity.NewPartyActivity" />
     </application>
 
 </manifest>

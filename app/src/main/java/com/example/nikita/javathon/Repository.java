@@ -2,6 +2,7 @@ package com.example.nikita.javathon;
 
 import android.content.Context;
 
+import com.example.nikita.javathon.UI.NewPartyActivity.MemberModel;
 import com.example.nikita.javathon.UI.PartyList.PartyListModel;
 import com.example.nikita.javathon.UI.ProductDetails.ProductDetailsListModel;
 import com.example.nikita.javathon.UI.ProductsList.ProductsModel;
@@ -56,6 +57,18 @@ public class Repository {
     }
 
     public Observable<ResponseBody> addParty(PartyListModel productsModel){
+
+    }
+
+    public Observable<ResponseBody> addMember(MemberModel memberModel){
+
+    }
+
+    public Observable<ResponseBody> removeMember(MemberModel memberModel){
+
+    }
+
+    public Observable<List<MemberModel>> getMembers(String searchText){
 
     }
 }

@@ -2,15 +2,13 @@ package com.example.nikita.javathon.UI.ProductsList;
 
 import android.support.annotation.NonNull;
 
-import com.example.nikita.javathon.AddStatus;
-import com.example.nikita.javathon.UI.PartyList.PartyListModel;
-import com.example.nikita.javathon.UI.PartyList.PartyListViewState;
+import com.example.nikita.javathon.Enums.AddStatus;
 
 import java.util.List;
 
 import io.reactivex.annotations.Nullable;
 
-import static com.example.nikita.javathon.AddStatus.*;
+import static com.example.nikita.javathon.Enums.AddStatus.*;
 
 public class ListViewState {
 

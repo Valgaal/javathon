@@ -2,16 +2,15 @@ package com.example.nikita.javathon.UI.ProductDetails;
 
 import android.support.annotation.NonNull;
 
-import com.example.nikita.javathon.Status;
-import com.example.nikita.javathon.UI.ProductsList.ProductsModel;
+import com.example.nikita.javathon.Enums.Status;
 
 import java.util.List;
 
 import io.reactivex.annotations.Nullable;
 
-import static com.example.nikita.javathon.Status.ERROR;
-import static com.example.nikita.javathon.Status.LOADING;
-import static com.example.nikita.javathon.Status.SUCCESS;
+import static com.example.nikita.javathon.Enums.Status.ERROR;
+import static com.example.nikita.javathon.Enums.Status.LOADING;
+import static com.example.nikita.javathon.Enums.Status.SUCCESS;
 
 public class ProductDetailsViewState {
 

@@ -8,5 +8,11 @@
     <string name="hint_add_name">Добавьте навзание</string>
     <string name="hint_add_count">Добавьте количество</string>
     <string name="success">Успешно</string>
+    <string name="example_search">Введите имя</string>
+    <string name="button_search">Поиск</string>
+    <string name="results">Результаты</string>
+    <string name="added">Добавленные</string>
+    <string name="enter_name">Введите название</string>
+    <string name="done">Готово</string>
 
 </resources>

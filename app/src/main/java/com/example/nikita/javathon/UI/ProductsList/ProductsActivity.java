@@ -27,7 +27,7 @@ public class ProductsActivity  extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.products_list);
         sendMoneyButton = findViewById(R.id.sendMoneyButton);
         sendMoneyButton.setOnClickListener(view -> mViewModel.sendMoney());
         progressBar = findViewById(R.id.progressBar);
